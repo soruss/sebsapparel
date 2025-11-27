@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+  /* Minimalist B&W Palette */
+  --color-bg: #FFFFFF;
+  --color-surface: #F9F9F9;
+  --color-text-main: #000000;
+  --color-text-muted: #666666;
+  --color-primary: #000000;
+  --color-primary-hover: #333333;
+  --color-accent-cream: #F2F0E6;
+  --color-accent-gray: #E5E5E5;
+  --color-border: #E5E5E5;
+
+  /* Typography */
+  --font-sans: 'Space Mono', monospace;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-4xl: 2.25rem;
+  --text-6xl: 3.75rem;
+
+  /* Spacing */
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* Layout */
+  --container-width: 1200px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-full: 0px;
+  /* Sharp corners for industrial look */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-transform: uppercase;
+  /* Industrial feel */
+  letter-spacing: 0.05em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Premium Reveal Animation */
+@keyframes reveal-premium {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.reveal-active {
+  animation: reveal-premium 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Utilities */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+/* Glitch Animation */
+@keyframes glitch-fill {
+  0% {
+    background-color: transparent;
+  }
+
+  20% {
+    background-color: var(--color-text-main);
+  }
+
+  40% {
+    background-color: transparent;
+  }
+
+  60% {
+    background-color: var(--color-text-main);
+  }
+
+  80% {
+    background-color: transparent;
+  }
+
+  100% {
+    background-color: var(--color-text-main);
+  }
+}
+
+@keyframes glitch-fill-primary {
+  0% {
+    background-color: transparent;
+  }
+
+  20% {
+    background-color: var(--color-primary);
+  }
+
+  40% {
+    background-color: transparent;
+  }
+
+  60% {
+    background-color: var(--color-primary);
+  }
+
+  80% {
+    background-color: transparent;
+  }
+
+  100% {
+    background-color: var(--color-primary);
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2) var(--space-6);
+  border-radius: 0px;
+  /* Sharp corners */
+  font-weight: 800;
+  /* Extra Bold */
+  text-transform: lowercase;
+  transition: color 0.35s ease-in-out;
+  /* Smooth text color transition */
+  border: 2px solid var(--color-text-main);
+  /* Always visible border */
+  background-color: transparent;
+  /* Default transparent */
+  color: var(--color-text-main);
+  box-shadow: 4px 4px 0px var(--color-text-main);
+  /* Heavy shadow */
+  margin-right: 4px;
+  margin-bottom: 4px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  /* Ensure text is above pseudo-element */
+}
+
+/* Liquid Fill Pseudo-element */
+.btn::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background-color: var(--color-primary);
+  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Liquid feel */
+  z-index: -1;
+}
+
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--color-text-main);
+}
+
+.btn-primary {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: 4px 4px 0px var(--color-primary);
+}
+
+.btn-primary:hover {
+  color: white;
+  /* Text turns white */
+}
+
+.btn-primary:hover::before {
+  height: 100%;
+  /* Fill up */
+}
+
+.btn-outline {
+  border-color: var(--color-text-main);
+  color: var(--color-text-main);
+}
+
+.btn-outline::before {
+  background-color: var(--color-text-main);
+}
+
+.btn-outline:hover {
+  color: var(--color-bg);
+  /* Text turns background color (white) */
+}
+
+.btn-outline:hover::before {
+  height: 100%;
+  /* Fill up */
+}
+
+/* Feature Card Hover */
+.feature-card:hover {
+  border-color: var(--color-text-main) !important;
+  transform: translateY(-4px);
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .hero-content-wrapper {
+    padding-left: var(--space-4) !important;
+    padding-right: var(--space-4) !important;
+  }
+}
+
+.text-gradient {
+  color: var(--color-primary);
+  /* Solid color override */
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+}
+
+.section {
+  padding: var(--space-24) 0;
+}
