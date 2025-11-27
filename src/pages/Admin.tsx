@@ -17,6 +17,7 @@ interface Meeting {
     date: string;
     message: string;
     file_name?: string;
+    file_url?: string;
 }
 
 const Admin: React.FC = () => {
@@ -255,7 +256,21 @@ const Admin: React.FC = () => {
                                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)', fontSize: 'var(--text-sm)' }}>
                                     <div><strong>Email:</strong> {meeting.email}</div>
                                     <div><strong>Organization:</strong> {meeting.organization}</div>
-                                    <div><strong>File:</strong> {meeting.file_name || 'None'}</div>
+                                    <div>
+                                        <strong>File:</strong>{' '}
+                                        {meeting.file_url ? (
+                                            <a
+                                                href={meeting.file_url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}
+                                            >
+                                                {meeting.file_name || 'Download'}
+                                            </a>
+                                        ) : (
+                                            meeting.file_name || 'None'
+                                        )}
+                                    </div>
                                     <div><strong>Submitted:</strong> {new Date(meeting.created_at).toLocaleDateString()}</div>
                                 </div>
                                 <div style={{ marginTop: 'var(--space-4)', padding: 'var(--space-4)', backgroundColor: 'var(--color-bg)' }}>
