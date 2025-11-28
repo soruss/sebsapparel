@@ -239,7 +239,7 @@ button {
 }
 
 /* Mobile Optimization */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hero-content-wrapper {
     padding-left: var(--space-4) !important;
     padding-right: var(--space-4) !important;
