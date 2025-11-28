@@ -19,18 +19,18 @@ const Hero: React.FC = () => {
             justifyContent: 'center', // Vertically center
             paddingTop: 0 // Remove top padding
         }}>
-            <div className="container" style={{ 
-                position: 'relative', 
+            <div className="container" style={{
+                position: 'relative',
                 flex: 1, // Fill the parent section height
                 width: '100%',
-                display: 'flex', 
-                alignItems: 'center' 
+                display: 'flex',
+                alignItems: 'center'
             }}>
-                
+
                 {/* Background Logo - Anchored to the LEFT to stay with text */}
                 <div style={{
                     position: 'absolute',
-                    left: '35%', // Start 35% from the left (overlaps text)
+                    left: '25%', // Move closer to text (was 35%)
                     top: '50%',
                     transform: 'translateY(-50%)',
                     height: '120%', // Make it taller (Original size was big)
