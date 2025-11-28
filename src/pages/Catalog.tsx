@@ -30,7 +30,7 @@ const Catalog: React.FC = () => {
     };
 
     return (
-        <div style={{ paddingTop: '40px', minHeight: '100vh', backgroundColor: 'var(--color-bg)' }}>
+        <div style={{ paddingTop: '20px', minHeight: '100vh', backgroundColor: 'var(--color-bg)' }}>
             <section className="section">
                 <div className="container">
                     <Reveal width="100%">
