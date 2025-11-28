@@ -18,9 +18,7 @@ const Navbar: React.FC = () => {
             <div className="container" style={{ display: 'flex', alignItems: 'center' }}>
                 {/* Left: Links */}
                 <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', gap: 'var(--space-6)' }}>
-                    <a href="/#services" style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)' }}>Services</a>
-                    <a href="/#process" style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)' }}>Process</a>
-                    <a href="/#contact" style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)' }}>Contact</a>
+                    <Link to="/catalog" style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)' }}>Catalog</Link>
                 </div>
 
                 {/* Center: Logo */}
