@@ -18,6 +18,10 @@ interface Meeting {
     message: string;
     file_name?: string;
     file_url?: string;
+    phone?: string;
+    school?: string;
+    chapterName?: string;
+    role?: string;
 }
 
 const Admin: React.FC = () => {
@@ -29,6 +33,7 @@ const Admin: React.FC = () => {
     // Catalog State
     const [catalogItems, setCatalogItems] = useState<CatalogItem[]>([]);
     const [newItem, setNewItem] = useState({ title: '', category: '', image_url: '' });
+    const [itemFile, setItemFile] = useState<File | null>(null);
 
     // Meetings State
     const [meetings, setMeetings] = useState<Meeting[]>([]);
@@ -90,14 +95,38 @@ const Admin: React.FC = () => {
 
     const handleAddItem = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        let imageUrl = newItem.image_url;
+
+        if (itemFile) {
+            const fileExt = itemFile.name.split('.').pop();
+            const filePath = `${Date.now()}.${fileExt}`;
+
+            const { error: uploadError } = await supabase.storage
+                .from('catalog-images')
+                .upload(filePath, itemFile);
+
+            if (uploadError) {
+                alert('Error uploading image: ' + uploadError.message);
+                return;
+            }
+
+            const { data: { publicUrl } } = supabase.storage
+                .from('catalog-images')
+                .getPublicUrl(filePath);
+
+            imageUrl = publicUrl;
+        }
+
         const { error } = await supabase
             .from('catalog_items')
-            .insert([newItem]);
+            .insert([{ ...newItem, image_url: imageUrl }]);
 
         if (error) {
             alert('Error adding item: ' + error.message);
         } else {
             setNewItem({ title: '', category: '', image_url: '' });
+            setItemFile(null);
             fetchCatalog();
         }
     };
@@ -205,13 +234,18 @@ const Admin: React.FC = () => {
                                     required
                                     style={{ padding: 'var(--space-2)' }}
                                 />
-                                <input
-                                    placeholder="Image URL"
-                                    value={newItem.image_url}
-                                    onChange={e => setNewItem({ ...newItem, image_url: e.target.value })}
-                                    required
-                                    style={{ padding: 'var(--space-2)' }}
-                                />
+                                <div>
+                                    <label style={{ display: 'block', marginBottom: 'var(--space-2)', fontSize: 'var(--text-xs)', fontWeight: 700 }}>
+                                        Upload Image
+                                    </label>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={e => setItemFile(e.target.files ? e.target.files[0] : null)}
+                                        required
+                                        style={{ padding: 'var(--space-2)', backgroundColor: 'var(--color-bg)' }}
+                                    />
+                                </div>
                                 <button type="submit" className="btn btn-primary">Add Item</button>
                             </form>
                         </div>
@@ -255,7 +289,11 @@ const Admin: React.FC = () => {
                                 </div>
                                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-4)', fontSize: 'var(--text-sm)' }}>
                                     <div><strong>Email:</strong> {meeting.email}</div>
+                                    <div><strong>Phone:</strong> {meeting.phone || 'N/A'}</div>
+                                    <div><strong>School:</strong> {meeting.school || 'N/A'}</div>
                                     <div><strong>Organization:</strong> {meeting.organization}</div>
+                                    <div><strong>Chapter:</strong> {meeting.chapterName || 'N/A'}</div>
+                                    <div><strong>Role:</strong> {meeting.role || 'N/A'}</div>
                                     <div>
                                         <strong>File:</strong>{' '}
                                         {meeting.file_url ? (
