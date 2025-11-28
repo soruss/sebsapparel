@@ -4,11 +4,7 @@ import ScrambleText from './ScrambleText';
 import Reveal from './Reveal';
 import logo from '../assets/logo.png';
 
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import ScrambleText from './ScrambleText';
-import Reveal from './Reveal';
-import logo from '../assets/logo.png';
+
 
 const Hero: React.FC = () => {
     const navigate = useNavigate();
