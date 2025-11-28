@@ -10,34 +10,6 @@ const Hero: React.FC = () => {
     return (
         <section className="section" style={{
             textAlign: 'left',
-            position: 'relative',
-            overflow: 'hidden',
-            minHeight: 'calc(100vh - 80px)', // Full height minus navbar
-            display: 'flex', // Enable flexbox
-            flexDirection: 'column',
-            justifyContent: 'center', // Vertically center
-            alignItems: 'flex-start', // Force left alignment
-            paddingTop: 0 // Remove top padding
-        }}>
-            <div className="container" style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center' }}>
-
-                {/* Background Logo - Anchored to the right of the container */}
-                <div style={{
-                    position: 'absolute',
-                    right: 0,
-                    top: '50%',
-                    transform: 'translate(15%, -50%)', // Center vertically, shift slightly right
-                    height: '120%', // Make it huge
-                    width: '100%', // Take up full container width
-                    zIndex: 0,
-                    display: 'flex',
-                    justifyContent: 'center', // Center in the container (overlaps text)
-                    alignItems: 'center',
-                    pointerEvents: 'none',
-                    opacity: 0.08
-                }}>
-                    <img src={logo} alt="" style={{ height: '100%', width: '100%', objectFit: 'contain', filter: 'grayscale(100%)' }} />
-                </div>
 
                 {/* Content Wrapper - Allow overlap */}
                 <div
@@ -85,8 +57,8 @@ const Hero: React.FC = () => {
                         </div>
                     </Reveal>
                 </div>
-            </div>
-        </section>
+            </div >
+        </section >
     );
 };
 
