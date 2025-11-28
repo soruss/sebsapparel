@@ -15,9 +15,9 @@ const Navbar: React.FC = () => {
             backdropFilter: 'blur(10px)',
             zIndex: 100
         }}>
-            <div className="container" style={{ display: 'flex', alignItems: 'center' }}>
+            <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 {/* Left: Links */}
-                <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', gap: 'var(--space-6)' }}>
+                <div className="desktop-only" style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', gap: 'var(--space-6)' }}>
                     <Link to="/catalog" style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)' }}>Catalog</Link>
                 </div>
 
@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
                 </div>
 
                 {/* Right: CTA */}
-                <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+                <div className="desktop-only" style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
                     <button
                         className="btn btn-primary"
                         style={{ fontSize: 'var(--text-sm)' }}
