@@ -30,7 +30,7 @@ const Catalog: React.FC = () => {
     };
 
     return (
-        <div style={{ paddingTop: '80px', minHeight: '100vh', backgroundColor: 'var(--color-bg)' }}>
+        <div style={{ paddingTop: '40px', minHeight: '100vh', backgroundColor: 'var(--color-bg)' }}>
             <section className="section">
                 <div className="container">
                     <Reveal width="100%">
@@ -49,7 +49,7 @@ const Catalog: React.FC = () => {
                             marginBottom: 'var(--space-12)',
                             maxWidth: '600px'
                         }}>
-                            A selection of our recent work for fraternities and sororities across the nation.
+                            A selection of our work for fraternities and sororities across the nation.
                         </p>
                     </Reveal>
 
