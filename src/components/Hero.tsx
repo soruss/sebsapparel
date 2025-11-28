@@ -24,29 +24,29 @@ const Hero: React.FC = () => {
                 {/* Background Logo - Anchored to the right of the container */}
                 <div style={{
                     position: 'absolute',
-                    right: 0,
+                    right: '-5%', // Pull slightly outside to the right
                     top: '50%',
                     transform: 'translateY(-50%)',
-                    height: '80%',
-                    width: '50%', // Take up right half
+                    height: '90%', // Make it taller
+                    width: '70%', // Take up more width to ensure overlap
                     zIndex: 0,
                     display: 'flex',
                     justifyContent: 'flex-end',
                     alignItems: 'center',
                     pointerEvents: 'none',
-                    opacity: 0.05
+                    opacity: 0.08 // Slightly more visible
                 }}>
                     <img src={logo} alt="" style={{ height: '100%', width: '100%', objectFit: 'contain', filter: 'grayscale(100%)' }} />
                 </div>
 
-                {/* Content Wrapper - Restricted width to avoid logo overlap */}
+                {/* Content Wrapper - Allow overlap */}
                 <div
                     className="hero-content-wrapper"
                     style={{
                         position: 'relative',
                         zIndex: 10,
-                        maxWidth: '650px', // Restrict text width
-                        width: '100%'
+                        width: '100%', // Full width to allow overlap
+                        paddingRight: 'var(--space-8)' // Slight padding
                     }}>
                     <Reveal width="100%">
                         <h1 style={{
