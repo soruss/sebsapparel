@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import BookMeeting from './pages/BookMeeting';
 import Catalog from './pages/Catalog';
 import Admin from './pages/Admin';
-import Process from './components/Process';
+import Admin from './pages/Admin';
 
 import ScrollToTop from './components/ScrollToTop';
 
@@ -16,12 +16,7 @@ function App() {
       <div>
         <Navbar />
         <Routes>
-          <Route path="/" element={
-            <>
-              <Home />
-              <Process />
-            </>
-          } />
+          <Route path="/" element={<Home />} />
           <Route path="/book-meeting" element={<BookMeeting />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/admin" element={<Admin />} />
