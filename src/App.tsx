@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import BookMeeting from './pages/BookMeeting';
 import Catalog from './pages/Catalog';
 import Admin from './pages/Admin';
-import Admin from './pages/Admin';
+
 
 import ScrollToTop from './components/ScrollToTop';
 
