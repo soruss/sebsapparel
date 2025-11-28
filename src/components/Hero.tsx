@@ -4,12 +4,45 @@ import ScrambleText from './ScrambleText';
 import Reveal from './Reveal';
 import logo from '../assets/logo.png';
 
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import ScrambleText from './ScrambleText';
+import Reveal from './Reveal';
+import logo from '../assets/logo.png';
+
 const Hero: React.FC = () => {
     const navigate = useNavigate();
 
     return (
         <section className="section" style={{
             textAlign: 'left',
+            position: 'relative',
+            overflow: 'hidden',
+            minHeight: 'calc(100vh - 80px)', // Full height minus navbar
+            display: 'flex', // Enable flexbox
+            flexDirection: 'column',
+            justifyContent: 'center', // Vertically center
+            paddingTop: 0 // Remove top padding
+        }}>
+            <div className="container" style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center' }}>
+
+                {/* Background Logo - Anchored to the LEFT to stay with text */}
+                <div style={{
+                    position: 'absolute',
+                    left: '35%', // Start 35% from the left (overlaps text)
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    height: '100%',
+                    width: '65%', // Take up remaining space
+                    zIndex: 0,
+                    display: 'flex',
+                    justifyContent: 'flex-start', // Align image to the left of this box
+                    alignItems: 'center',
+                    pointerEvents: 'none',
+                    opacity: 0.08
+                }}>
+                    <img src={logo} alt="" style={{ height: '100%', width: '100%', objectFit: 'contain', filter: 'grayscale(100%)' }} />
+                </div>
 
                 {/* Content Wrapper - Allow overlap */}
                 <div
@@ -57,8 +90,8 @@ const Hero: React.FC = () => {
                         </div>
                     </Reveal>
                 </div>
-            </div >
-        </section >
+            </div>
+        </section>
     );
 };
 
