@@ -29,8 +29,8 @@ const Hero: React.FC = () => {
                     left: '35%', // Start 35% from the left (overlaps text)
                     top: '50%',
                     transform: 'translateY(-50%)',
-                    height: '100%',
-                    width: '65%', // Take up remaining space
+                    height: '120%', // Make it taller (Original size was big)
+                    width: '100%', // Allow it to take up full width (extending off screen)
                     zIndex: 0,
                     display: 'flex',
                     justifyContent: 'flex-start', // Align image to the left of this box
