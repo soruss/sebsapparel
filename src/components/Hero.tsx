@@ -24,14 +24,14 @@ const Hero: React.FC = () => {
                 {/* Background Logo - Anchored to the right of the container */}
                 <div style={{
                     position: 'absolute',
-                    right: '10%', // Move significantly left to overlap text
+                    right: 0,
                     top: '50%',
-                    transform: 'translateY(-50%)',
-                    height: '100%', // Full height
-                    width: '75%', // Wide enough to reach the text
+                    transform: 'translate(15%, -50%)', // Center vertically, shift slightly right
+                    height: '120%', // Make it huge
+                    width: '100%', // Take up full container width
                     zIndex: 0,
                     display: 'flex',
-                    justifyContent: 'flex-end',
+                    justifyContent: 'center', // Center in the container (overlaps text)
                     alignItems: 'center',
                     pointerEvents: 'none',
                     opacity: 0.08
