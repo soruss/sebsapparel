@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
                 <div style={{
                     position: 'absolute',
                     left: '25%', // Move closer to text (was 35%)
-                    top: '55%', // Move down slightly (was 50%)
+                    top: '58%', // Move down slightly (was 55%)
                     transform: 'translateY(-50%)',
                     height: '120%', // Make it taller (Original size was big)
                     width: '100%', // Allow it to take up full width (extending off screen)
