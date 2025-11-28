@@ -8,6 +8,7 @@ import logo from '../assets/logo.png';
 
 const Hero: React.FC = () => {
     const navigate = useNavigate();
+    // Triggering fresh deployment for Vercel sync
 
     return (
         <section className="section" style={{
