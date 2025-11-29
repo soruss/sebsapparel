@@ -11,6 +11,8 @@ interface CatalogItem {
 
 const Catalog: React.FC = () => {
     const [catalogItems, setCatalogItems] = useState<CatalogItem[]>([]);
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [isFilled, setIsFilled] = useState(false);
 
     useEffect(() => {
         fetchCatalog();
@@ -29,9 +31,14 @@ const Catalog: React.FC = () => {
         }
     };
 
+    const closeModel = () => {
+        setSelectedImage(null);
+        setIsFilled(false);
+    };
+
     return (
-        <div style={{ paddingTop: '20px', minHeight: '100vh', backgroundColor: 'var(--color-bg)' }}>
-            <section className="section">
+        <div style={{ paddingTop: '0px', minHeight: '100vh', backgroundColor: 'var(--color-bg)' }}>
+            <section className="section" style={{ paddingTop: 'var(--space-12)' }}>
                 <div className="container">
                     <Reveal width="100%">
                         <h1 style={{
@@ -43,14 +50,6 @@ const Catalog: React.FC = () => {
                         }}>
                             catalog
                         </h1>
-                        <p style={{
-                            fontSize: 'var(--text-lg)',
-                            color: 'var(--color-text-muted)',
-                            marginBottom: 'var(--space-12)',
-                            maxWidth: '600px'
-                        }}>
-                            A selection of our work for fraternities and sororities across the nation.
-                        </p>
                     </Reveal>
 
                     <div style={{
@@ -67,6 +66,7 @@ const Catalog: React.FC = () => {
                                     transition: 'transform 0.3s ease',
                                     cursor: 'pointer'
                                 }}
+                                    onClick={() => setSelectedImage(item.image_url)}
                                     onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
                                     onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
                                 >
@@ -113,6 +113,85 @@ const Catalog: React.FC = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Image Modal */}
+            {selectedImage && (
+                <div
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        zIndex: 2000,
+                        cursor: 'pointer'
+                    }}
+                    onClick={closeModel}
+                >
+                    <div style={{
+                        position: 'absolute',
+                        top: 'var(--space-6)',
+                        right: 'var(--space-6)',
+                        zIndex: 2001,
+                        display: 'flex',
+                        gap: 'var(--space-4)'
+                    }}>
+                        <button
+                            style={{
+                                backgroundColor: isFilled ? 'white' : 'transparent',
+                                color: isFilled ? 'black' : 'white',
+                                width: '40px',
+                                height: '40px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setIsFilled(!isFilled);
+                            }}
+                            title={isFilled ? "Fit to Screen" : "Fill Screen"}
+                        >
+                            {isFilled ? '⤡' : '⤢'}
+                        </button>
+                        <button
+                            style={{
+                                color: 'white',
+                                fontSize: 'var(--text-2xl)',
+                                fontWeight: 700,
+                                padding: 'var(--space-2)',
+                                width: '40px',
+                                height: '40px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}
+                            onClick={closeModel}
+                        >
+                            ✕
+                        </button>
+                    </div>
+
+                    <img
+                        src={selectedImage}
+                        alt="Full view"
+                        style={{
+                            maxWidth: isFilled ? '100%' : '90%',
+                            maxHeight: isFilled ? '100%' : '90vh',
+                            width: isFilled ? '100%' : 'auto',
+                            height: isFilled ? '100%' : 'auto',
+                            objectFit: isFilled ? 'cover' : 'contain',
+                            border: isFilled ? 'none' : '1px solid white',
+                            transition: 'all 0.3s ease'
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                    />
+                </div>
+            )}
         </div>
     );
 };
