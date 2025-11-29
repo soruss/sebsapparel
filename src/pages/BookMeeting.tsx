@@ -4,6 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import '../calendar-overrides.css';
 import Reveal from '../components/Reveal';
 import { supabase } from '../supabaseClient';
+import SuccessModal from '../components/SuccessModal';
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -15,6 +16,8 @@ const BookMeeting: React.FC = () => {
     const [date, setDate] = useState<Value>(new Date());
     const [bookedDates, setBookedDates] = useState<string[]>([]);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [submissionData, setSubmissionData] = useState<any>(null);
 
     // Load booked dates from Supabase on mount
     useEffect(() => {
@@ -96,7 +99,8 @@ const BookMeeting: React.FC = () => {
                 const dateString = date.toDateString();
                 setBookedDates([...bookedDates, dateString]);
                 setIsSubmitted(true);
-                alert('Meeting booked successfully! We will contact you shortly.');
+                setSubmissionData(submission);
+                setShowModal(true);
             } else {
                 console.error('Supabase error:', error);
                 alert('Failed to book meeting. Please try again.');
@@ -105,6 +109,12 @@ const BookMeeting: React.FC = () => {
             console.error('Error booking meeting:', error);
             alert('An error occurred. Please try again later.');
         }
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+        // Optional: Reset form or redirect
+        window.location.reload();
     };
 
     const inputStyle = {
@@ -132,6 +142,12 @@ const BookMeeting: React.FC = () => {
 
     return (
         <section className="section" style={{ paddingTop: 'var(--space-24)', minHeight: '90vh' }}>
+            <SuccessModal
+                isOpen={showModal}
+                onClose={handleCloseModal}
+                data={submissionData}
+            />
+
             <div className="container" style={{ maxWidth: '1000px' }}>
                 <Reveal width="100%">
                     <h1 style={{
@@ -353,7 +369,7 @@ const BookMeeting: React.FC = () => {
                                     style={{ width: '100%', padding: 'var(--space-4)' }}
                                     disabled={isSubmitted}
                                 >
-                                    {isSubmitted ? 'Request Sent!' : 'Confirm Meeting'}
+                                    {isSubmitted ? 'Processing...' : 'Confirm Meeting'}
                                 </button>
                             </div>
                         </div>
