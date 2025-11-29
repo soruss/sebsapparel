@@ -44,8 +44,14 @@ const BookMeeting: React.FC = () => {
 
     const isDateDisabled = ({ date }: { date: Date }) => {
         const dateString = date.toDateString();
-        // Disable past dates and booked dates
-        return date < new Date(new Date().setHours(0, 0, 0, 0)) || bookedDates.includes(dateString);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const maxDate = new Date(today);
+        maxDate.setDate(today.getDate() + 30);
+
+        // Disable past dates, dates more than 30 days out, and booked dates
+        return date < today || date > maxDate || bookedDates.includes(dateString);
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -332,7 +338,7 @@ const BookMeeting: React.FC = () => {
                             {/* File Upload */}
                             <div>
                                 <label style={labelStyle}>
-                                    Upload Design <span style={{ opacity: 0.6, textTransform: 'none' }}>(Optional)</span>
+                                    Upload Design <span style={{ opacity: 0.6, textTransform: 'none' }}>(Optional, Can do later)</span>
                                 </label>
                                 <div style={{ position: 'relative' }}>
                                     <input
