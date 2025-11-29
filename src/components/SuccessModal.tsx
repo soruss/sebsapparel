@@ -81,7 +81,7 @@ const SuccessModal: React.FC<SuccessModalProps> = ({ isOpen, onClose, data }) =>
                             <span style={{ fontWeight: 600 }}>{data.school}</span>
 
                             <span style={{ color: 'var(--color-text-muted)' }}>ORG:</span>
-                            <span style={{ fontWeight: 600 }}>{data.organization}</span>
+                            <span style={{ fontWeight: 600 }}>{data.chapterName || data.organization}</span>
 
                             <span style={{ color: 'var(--color-text-muted)' }}>DATE:</span>
                             <span style={{ fontWeight: 600 }}>{new Date(data.date).toLocaleDateString()}</span>
