@@ -3,10 +3,10 @@ import Reveal from './Reveal';
 
 const features = [
     { title: 'Direct Manufacturer', desc: 'Factory-direct pricing with no middleman markups.' },
-    { title: 'Rush Merch', desc: 'High-quality tees, hoodies, and hats for recruitment week.' },
+    { title: 'All Merchandise', desc: 'Tees, Longsleeves, Hoodies, Crewnecks, Hats, Pants, Shorts, Jerseys, etc.' },
     { title: 'Custom Embroidery', desc: 'Premium stitching for letters, crests, and personalized gear.' },
     { title: 'Bulk Orders', desc: 'Scalable production for entire chapters or national events.' },
-    { title: 'Fast Turnaround', desc: 'Rush delivery options to meet tight event deadlines.' },
+    { title: 'Student Founded', desc: 'Founded at Indiana University. Built by students, for students.' },
 ];
 
 const Features: React.FC = () => {
